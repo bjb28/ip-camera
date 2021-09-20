@@ -25,9 +25,9 @@ $ sudo cp objs/ngx_rtmp_module.so /etc/nginx/modules/
 ```
 [Source](https://hlsbook.net/hls-nginx-rtmp-module/])
 
-2. Set up the Nginx config whit [nginx.conf]( ) and conifgure the needed items.
+2. Set up the Nginx config whit [nginx.conf](nginx.conf) and conifgure the needed items.
 
-3. Modify the index.html and/or player pages as needed. The player page should match [this]( ) with the needed links.
+3. Modify the index.html and/or player pages as needed. The player page should match [this](player.html) with the needed links.
 
 4. Start the Nginx server: `sudo nginx` and `-s reload` if its already running. 
 
@@ -41,9 +41,10 @@ $ sudo apt-get update
 $ sudo apt-get install ffmpeg
 ```
 
-6. Run the stream with the desired configureation changes. 
+6. Run the stream with the desired configuration changes. 
 ```
 raspivid -t 0 -w 1280 -h 720 -fps 20 -g 75 -fl -o - | ffmpeg -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100 -i pipe:0 -c:v copy -c:a aac -strict experimental -fflags +genpts -f flv -f flv rtmp://[SERVER]:1935/live/pi0
 ```
 
-
+7. To convert all the `.flv` to `.mp4` use this command the [converter script](convert.sh)
+8. 
